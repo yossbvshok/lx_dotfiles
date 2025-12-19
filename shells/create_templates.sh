@@ -8,30 +8,72 @@ CYAN='\033[0;36m'
 PURPLE='\033[0;35m'
 NC='\033[0m'
 
-success() {
-    echo -e "${GREEN}[✓]${NC} :: $1"
+success() { 
+    echo -e "${GREEN}[✓]${NC} :: $1" 
 }
 
-info() {
-    echo -e "${BLUE}[i]${NC} :: $1"
+info() { 
+    echo -e "${BLUE}[i]${NC} :: $1" 
 }
 
-warning() {
-    echo -e "${YELLOW}[!]${NC} :: $1"
+warning() { 
+    echo -e "${YELLOW}[!]${NC} :: $1" 
 }
 
-error() {
-    echo -e "${RED}[✗]${NC} :: $1"
+error() { 
+    echo -e "${RED}[✗]${NC} :: $1" 
 }
 
-section() {
-    echo -e "${CYAN}[ $1 ]${NC}"
+section() { 
+    echo -e "${CYAN}[ $1 ]${NC}" 
 }
 
-# ---
-# Script to create various code and file templates
-# ---
+#== Multi-language Code Templates Generator
+# Description: Creates various programming language templates and security testing files
+# Features:
+#   # Creates templates for 13 different programming languages
+#   # Generates empty image files for testing
+#   # Creates security testing files with double extensions
+#   # Organized directory structure in ~/Templates
+#   # Color-coded output with status messages
 
+# Function to print usage information
+print_usage() {
+    echo -e "${CYAN}[ Usage ]${NC}"
+    echo "Usage: $0 [clean]"
+    echo ""
+    echo "Options:"
+    echo "  clean    # Remove all generated templates"
+    echo ""
+    echo "Description:"
+    echo "  This script creates a collection of programming language templates"
+    echo "  and security testing files in ~/Templates directory"
+    echo ""
+    echo "Features:"
+    echo "  # 13 programming language templates"
+    echo "  # Empty image files for testing"
+    echo "  # Security testing files"
+}
+
+# Check for help flag
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    print_usage
+    exit 0
+fi
+
+# Check for clean option
+if [ "$1" = "clean" ]; then
+    section "Cleaning Templates"
+    if [ -d ~/Templates ]; then
+        rm -rf ~/Templates
+        success "All templates removed from ~/Templates"
+    else
+        info "Templates directory not found"
+    fi
+    exit 0
+fi
+
+# Main script execution
 section "Creating Code and File Templates"
 
 TEMPLATES_DIR=~/Templates
@@ -398,7 +440,11 @@ warning "Double extension templates created for security testing purposes"
 # Finalization
 # ---
 
-success "All templates created successfully in $TEMPLATES_DIR"
+section "Summary"
+
 info "Total languages supported: 13"
 info "Security testing templates: 4"
-echo -e "Ready for CTF challenges and security testing"
+info "Image templates: 8"
+
+success "All templates created successfully in $TEMPLATES_DIR"
+warning "Educational use only: Security testing templates are for authorized testing only"

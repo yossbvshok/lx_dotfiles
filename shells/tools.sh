@@ -8,24 +8,24 @@ CYAN='\033[0;36m'
 PURPLE='\033[0;35m'
 NC='\033[0m'
 
-success() {
-    echo -e "${GREEN}[✓]${NC} :: $1"
+success() { 
+    echo -e "${GREEN}[✓]${NC} :: $1" 
 }
 
-info() {
-    echo -e "${BLUE}[i]${NC} :: $1"
+info() { 
+    echo -e "${BLUE}[i]${NC} :: $1" 
 }
 
-warning() {
-    echo -e "${YELLOW}[!]${NC} :: $1"
+warning() { 
+    echo -e "${YELLOW}[!]${NC} :: $1" 
 }
 
-error() {
-    echo -e "${RED}[✗]${NC} :: $1"
+error() { 
+    echo -e "${RED}[✗]${NC} :: $1" 
 }
 
-section() {
-    echo -e "${CYAN}[ $1 ]${NC}"
+section() { 
+    echo -e "${CYAN}[ $1 ]${NC}" 
 }
 
 # Create virtual environment
@@ -78,6 +78,7 @@ success "Formatting utilities installed"
 # More CTF tools
 section "Installing CTF Tools"
 sudo apt install -y binwalk exiftool foremost sleuthkit volatility wireshark tshark tcpdump nmap nikto gobuster ffuf seclists wordlists radare2 strace ltrace neofetch htop tree
+gem install zsteg
 success "CTF tools installed"
 
 # CTF tools pip (installed in virtual environment)
