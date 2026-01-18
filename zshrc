@@ -67,8 +67,8 @@ plugins=(
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-if [ -f /usr/share/zsh-autocomplete/zsh_tshark_autocomplete.plugin.zsh ]; then
-    source /usr/share/zsh-autocomplete/zsh_tshark_autocomplete.plugin.zsh
+if [ -f ~/.oh-my-zsh/custom/plugins/zsh_tshark_autocomplete/zsh_tshark_autocomplete.plugin.zsh ]; then
+    source ~/.oh-my-zsh/custom/plugins/zsh_tshark_autocomplete/zsh_tshark_autocomplete.plugin.zsh
     zstyle ':autocomplete:tab:*' insert-unambiguous yes
     zstyle ':autocomplete:tab:*' widget-style menu-select
     zstyle ':autocomplete:*' min-input 1000
