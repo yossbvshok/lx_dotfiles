@@ -119,6 +119,7 @@ setupThemes() {
     cp -f themes/files/micro_theme.micro ~/.config/micro/colorschemes/
     cp -f themes/files/kitty.conf ~/.config/kitty/
     cp -f themes/files/tmux.conf ~/.tmux.conf
+    cat themes/files/tilix.conf | dconf load /com/gexperts/Tilix/
     
     # Rofi theme
     sudo cp -f themes/files/rofi_theme.rasi /usr/share/rofi/themes/

@@ -41,7 +41,7 @@ APT_TOOLS=(
     "foremost" "sleuthkit" "volatility" "wireshark" "tshark" 
     "tcpdump" "nmap" "nikto" "gobuster" "ffuf" "seclists" 
     "wordlists" "radare2" "strace" "ltrace" "neofetch" "htop" 
-    "tree" "libboost-all-dev"
+    "tree" "libboost-all-dev" "tilix"
 )
 
 # Python pip packages
