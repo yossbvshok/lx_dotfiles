@@ -9,7 +9,7 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 # Log functions
-success() { 
+success() {
     echo -e "${GREEN}[✓]${NC} :: $1" 
 }
 
@@ -17,15 +17,15 @@ info() {
     echo -e "${BLUE}[i]${NC} :: $1" 
 }
 
-warning() { 
+warning() {
     echo -e "${YELLOW}[!]${NC} :: $1" 
 }
 
-error() { 
+error() {
     echo -e "${RED}[✗]${NC} :: $1" 
 }
 
-section() { 
+section() {
     echo -e "${CYAN}[ $1 ]${NC}" 
 }
 
