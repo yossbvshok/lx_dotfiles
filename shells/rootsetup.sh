@@ -65,7 +65,7 @@ setupRootThemes() {
     mkdir -p .config/xfce4/xfconf/xfce-perchannel-xml
     mkdir -p .config/gtk-3.0
     
-    cd /root/tools/dotfiles
+    cd /root/tools/dotfiles/config
     
     # Extract themes from themes directory
     tar -xf themes/mantinight.tar -C /root/.themes/
@@ -80,6 +80,7 @@ setupRootThemes() {
     cp -f schemes/rofi_theme.rasi /usr/share/rofi/themes/
     
     # Update XFCE configs
+    cd /root/tools/dotfiles
     cp -f xfce/xfce4-keyboard-shortcuts.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
     cp -f xfce/xfce4-power-manager.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
     cp -f xfce/xfce4Settings.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
