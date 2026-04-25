@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/.oh-my-zsh/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/custom/themes/powerlevel10k.zsh-theme
 
 # Disable updates
 DISABLE_AUTO_UPDATE="true"
@@ -14,8 +14,26 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # Environment paths
-export PATH=~/.local/bin:/snap/bin:/usr/sandbox/:/home/kali/.local/share/gem/ruby/3.3.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-export PATH="$HOME/bin/:$PATH"
+# Variables individuales de rutas
+PATH1="$HOME/.local/bin"
+PATH2="/snap/bin"
+PATH3="/usr/sandbox/"
+PATH4="/home/kali/.local/share/gem/ruby/3.3.0/bin"
+PATH5="/usr/local/bin"
+PATH6="/usr/bin"
+PATH7="/bin"
+PATH8="/usr/local/games"
+PATH9="/usr/games"
+PATH10="/usr/share/games"
+PATH11="/usr/local/sbin"
+PATH12="/usr/sbin"
+PATH13="/sbin"
+PATH14="$HOME/bin/"
+
+# PATH principal combinando todas
+export PATH="$PATH1:$PATH2:$PATH3:$PATH4:$PATH5:$PATH6:$PATH7:$PATH8:$PATH9:$PATH10:$PATH11:$PATH12:$PATH13:$PATH14:$PATH"
+
+# ZSH (sin cambios)
 export ZSH=$HOME/.oh-my-zsh
 
 # Themas oh-my-zsh

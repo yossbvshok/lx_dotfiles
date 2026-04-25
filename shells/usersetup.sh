@@ -182,21 +182,6 @@ installFonts() {
     sudo fc-cache -f -v
 }
 
-# Running tools script
-runToolsScript() {
-    section "Running tools script"
-    
-    cd ~/tools/dotfiles
-    
-    # Assign execute permission and run tools script
-    if [ -f shells/tools.sh ]; then
-        chmod +x shells/tools.sh
-        ./shells/tools.sh
-    else
-        warning "tools.sh not found in shells/ directory"
-    fi
-}
-
 main() {
     if [ "$EUID" -eq 0 ]; then
         warning "Do not run as root ~ use setup-root.sh for root configurations"
@@ -211,7 +196,6 @@ main() {
     # Installation sequence
     uninstallPackages
     cloneDotfiles
-    runToolsScript
     setupWallpapers
     createDirectories
     setupBinAndZsh
@@ -221,7 +205,7 @@ main() {
     # Completion message
     success "All user configurations applied"
     info "Run: source ~/.zshrc"
-    info "Then run: sudo ./setup-root.sh"
+    info "Then run: sudo ./rootsetup.sh"
 }
 
 # Execute main function
