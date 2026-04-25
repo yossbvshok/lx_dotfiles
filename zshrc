@@ -1,7 +1,4 @@
-# zshrc custom plugins, functions and themes
-#   cp zshrc ~/.zshrc
-
-# Powerlevel10k
+# Powerlevel10k terminal theme
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -16,13 +13,12 @@ DISABLE_AUTO_UPDATE="true"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# Paths
+# Environment paths
 export PATH=~/.local/bin:/snap/bin:/usr/sandbox/:/home/kali/.local/share/gem/ruby/3.3.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 export PATH="$HOME/bin/:$PATH"
 export ZSH=$HOME/.oh-my-zsh
 
 # Themas oh-my-zsh
-# ZSH_THEME="evan"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_COLORIZE_STYLE="colorful"
 
@@ -59,7 +55,10 @@ function reload() {
     sudo tee /proc/sys/vm/drop_caches > /dev/null
 }
 
-# Aliases
+# Local aliases
+alias bat='batcat --theme="base16" -l c'
+alias stopVpn='sudo killall openvpn'
+alias rmall='sudo rm -r'
 alias ll='ls -l'
 alias la='ls -la'
 alias cls="clear"
@@ -68,11 +67,8 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias bat='batcat --theme="base16" -l c'
-alias stopVpn='sudo killall openvpn'
-alias rmall='sudo rm -r'
 
-# Plugins
+# Local plugins
 plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
