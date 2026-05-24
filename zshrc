@@ -50,7 +50,7 @@ function b64() {
 }
 
 function mkt() { 
-  mkdir {content,nmap,credentials,exploits} 
+  mkdir mkdir {contents,nmap,creds,exps,dump,writeups} 
 }
 
 function py() { 
