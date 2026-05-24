@@ -52,12 +52,14 @@ setup_windsurf_repo() {
   success "Windsurf repository added"
 }
 
-setup_pwndbg_repo() {
-  section "Setting up Pwndbg Repository"
+setup_snyk_cli() {
+  section "Setting up Snyk CLI"
 
-  # Add Pwndbg repository
-  sudo curl --proto '=https' --tlsv1.2 -LsSf 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
-  success "Pwndbg repository added"
+  # Add Snyk repository
+  curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+  chmod +x snyk
+  sudo mv snyk ~/bin
+  success "Snyk CLI installed"
 }
 
 # Function to install Ruby gems
@@ -97,9 +99,7 @@ install_gdb_plugins() {
 
   # Install pwndbg
   info "Installing/Updating pwndbg..."
-  # Remove existing if any
-  rm -rf pwndbg-gdb 2>/dev/null
-  curl -qsL 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
+  sudo curl --proto '=https' --tlsv1.2 -LsSf 'https://install.pwndbg.re' | sh -s -- -t pwndbg-gdb
 
   success "GDB plugins installation completed"
 }
@@ -169,7 +169,7 @@ main() {
 
   # Installation sequence
   setup_windsurf_repo
-  setup_pwndbg_repo
+  setup_synk_repo
   install_gem_tools
   install_flatpak
   install_micro_editor
