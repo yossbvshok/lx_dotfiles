@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/tools/dotfiles/utils/expcolors.sh
+source ~/tools/lx_dotfiles/utils/expcolors.sh
 
 # Uninstalling packages
 uninstallPackages() {
@@ -26,11 +26,11 @@ cloneDotfiles() {
   cd ~/tools
 
   # Clone dotfiles (if it already exists, update it)
-  if [ -d ~/tools/dotfiles ]; then
-    cd ~/tools/dotfiles
+  if [ -d ~/tools/lx_dotfiles ]; then
+    cd ~/tools/lx_dotfiles
     git pull
   else
-    git clone https://github.com/Yoswell/dotfiles.git ~/tools/dotfiles
+    git clone https://github.com/Yoswell/lx_dotfiles.git ~/tools/lx_dotfiles
   fi
 }
 
@@ -38,7 +38,7 @@ cloneDotfiles() {
 setupWallpapers() {
   section "Setting up wallpapers"
 
-  cd ~/tools/dotfiles
+  cd ~/tools/lx_dotfiles
 
   # Copy wallpapers from dotfiles
   cp -rf wallpapers ~/Desktop/
@@ -69,7 +69,7 @@ setupBinAndZsh() {
   mkdir -p ~/bin
   mkdir -p ~/.oh-my-zsh/custom/plugins
 
-  cd ~/tools/dotfiles
+  cd ~/tools/lx_dotfiles
 
   # ZSH and BIN of normal user
   cp -rf zshrc ~/.zshrc
@@ -106,7 +106,7 @@ setupUserThemes() {
   mkdir -p .config/xfce4/xfconf/xfce-perchannel-xml
   mkdir -p .config/gtk-3.0
 
-  cd ~/tools/dotfiles/config
+  cd ~/tools/lx_dotfiles/config
 
   # Extract themes from themes directory
   tar -xf themes/MANTI.tar -C ~/.themes/
@@ -128,7 +128,7 @@ setupUserThemes() {
   sudo cp -f schemes/rofi_theme.rasi /usr/share/rofi/themes/
 
   # Update XFCE configs (located at the root of dotfiles)
-  cd ~/tools/dotfiles
+  cd ~/tools/lx_dotfiles
   if [ -d xfce ]; then
     cp -f xfce/xfce4-keyboard-shortcuts.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/ 2>/dev/null
     cp -f xfce/xfce4-power-manager.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/ 2>/dev/null
@@ -142,7 +142,7 @@ setupUserThemes() {
 installFonts() {
   section "Installing fonts"
 
-  cd ~/tools/dotfiles/config/fonts
+  cd ~/tools/lx_dotfiles/config/fonts
 
   # Create font directories
   sudo mkdir -p /usr/share/fonts/truetype/jetbrains-mono

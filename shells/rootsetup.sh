@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/tools/dotfiles/utils/expcolors.sh
+source ~/tools/lx_dotfiles/utils/expcolors.sh
 
 # Cloning dotfiles to root
 cloneDotfiles() {
@@ -11,14 +11,14 @@ cloneDotfiles() {
   cd /root/tools
 
   # Clone dotfiles directly to root
-  git clone https://github.com/Yoswell/dotfiles.git
+  git clone https://github.com/Yoswell/lx_dotfiles.git
 }
 
 # Setting up BIN and ZSH for root
 setupBinAndZsh() {
   section "Setting up BIN and ZSH for root"
 
-  cd /root/tools/dotfiles
+  cd /root/tools/lx_dotfiles
 
   # ZSH and BIN of root user
   cp -rf zshrc /root/.zshrc
@@ -38,7 +38,7 @@ setupRootThemes() {
   mkdir -p .config/xfce4/xfconf/xfce-perchannel-xml
   mkdir -p .config/gtk-3.0
 
-  cd /root/tools/dotfiles/config
+  cd /root/tools/lx_dotfiles/config
 
   # Extract themes from themes directory
   tar -xf themes/mantinight.tar -C /root/.themes/
@@ -53,7 +53,7 @@ setupRootThemes() {
   cp -f schemes/rofi_theme.rasi /usr/share/rofi/themes/
 
   # Update XFCE configs
-  cd /root/tools/dotfiles
+  cd /root/tools/lx_dotfiles
   cp -f xfce/xfce4-keyboard-shortcuts.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
   cp -f xfce/xfce4-power-manager.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
   cp -f xfce/xfce4Settings.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
