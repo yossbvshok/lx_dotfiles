@@ -15,6 +15,7 @@ FLATPAK_APPS=(
 # Docker images
 DOCKER_IMAGES=(
   "mcr.microsoft.com/dotnet/sdk:9.0"
+  "tenable/nessus:latest-ubuntu"
 )
 
 # Micro editor plugins
@@ -153,6 +154,25 @@ install_special_tools() {
   fi
 
   success "Special tools installation completed"
+}
+
+install_docker_images() {
+  section "Installing Docker Images"
+
+  sudo systemctl enable docker --now
+
+  # Add current user to docker group
+  newgrp docker
+  sudo usermod -aG docker $USER
+
+  # Pull Docker images
+  info "Pulling Docker images..."
+  for image in "${DOCKER_IMAGES[@]}"; do
+    info "Pulling: $image"
+    docker pull "$image"
+  done
+
+  success "Docker images installation completed"
 }
 
 # Main installation function
