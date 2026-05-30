@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/tools/dotfiles/utils/expcolors.sh
+source ~/tools/lx_dotfiles/utils/expcolors.sh
 
 # APT packages
 APT_TOOLS=(

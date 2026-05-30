@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/tools/dotfiles/utils/expcolors.sh
+source ~/tools/lx_dotfiles/utils/expcolors.sh
 
 # Ruby packages
 GEM_TOOLS=(
