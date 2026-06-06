@@ -9,7 +9,7 @@ CONFIG_DIR="$HOME/.config"
 KEEP_ITEMS=(
   "micro" "powershell" "rofi" "Vector 35"
   "dconf" "Mousepad" "pulse" "Thunar" "Windsurf"
-  "gtk-3.0" "nautilus" "qt6ct" "user-dirs.dirs" "user-dirs.locale"
+  "gtk-3.0" "nautilus" "qt6ct" "user-dirs.dirs" "user-dirs.locale" "autostart"
   "xfce4" "kitty" "qterminal.org" "wireshark" "Caido" "obsidian" "Windsurf" "polybar"
 )
 
