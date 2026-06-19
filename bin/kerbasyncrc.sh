@@ -4,14 +4,14 @@ source ~/tools/lx_dotfiles/utils/expcolors.sh
 
 # Function to print usage information
 print_usage() {
-  echo "Usage: $0 <target_host> [port]"
+  section "Usage Information"
+  echo "Usage: $0 <target_host>"
   echo ""
   echo "Examples:"
-  echo "$0 10.10.11.95"
-  echo "$0 10.10.11.95 8080"
+  echo "$0 10.129.27.108"
   echo ""
   echo "With faketime:"
-  echo "faketime \"\$($0 10.10.11.95)\" impacket-getST eighteen.htb/adam.scott:iloveyou1 -impersonate 'enc_dmsa\$' -self -dmsa -debug"
+  echo "faketime \"\$(kerbasyncrc.sh 10.129.27.108)\" impacket-getST eighteen.htb/adam.scott:iloveyou1 -impersonate 'enc_dmsa' -self -dmsa -debug"
 }
 
 # Check for help flag or no arguments
@@ -20,75 +20,57 @@ if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   exit 0
 fi
 
-# Core function definition
+# Core function definition using ntpdate
 getDate() {
-  date -d "$(wget --method=HEAD -qSO- --max-redirect=0 $@ 2>&1 | sed -n 's/^ *Date: *//p')" "+%Y-%m-%d %H:%M:%S" 2>/dev/null
+  local target_host="$1"
+  local ntp_output
+  ntp_output=$(ntpdate -u "$target_host" 2>&1)
+
+  # Filter the line that starts with the date and remove milliseconds
+  echo "$ntp_output" | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}' | awk '{print $1, substr($2, 1, 8)}'
 }
 
 # Check and install faketime (silent)
 check_faketime() {
   if ! command -v faketime &>/dev/null; then
-    # Silent installation
+    info "faketime is not installed. Attempting silent installation..."
     sudo apt update >/dev/null 2>&1 && sudo apt install -y faketime >/dev/null 2>&1
 
     if [ $? -ne 0 ]; then
-      error "Failed to install faketime"
-      echo "Please install manually: sudo apt install faketime"
+      error "Failed to install faketime package automatically."
+      warning "Please install it manually: sudo apt install faketime"
       return 1
     fi
+    success "faketime installed successfully."
   fi
   return 0
 }
 
 # Main execution
 main() {
-  # Parse arguments
   local target_host="$1"
-  local target_port="${2:-80}"
 
   # Validations
   if [ -z "$target_host" ]; then
-    error "No target host specified"
+    error "No target host specified."
     print_usage
     exit 1
   fi
 
-  # Validate port
-  if ! [[ "$target_port" =~ ^[0-9]+$ ]] || [ "$target_port" -lt 1 ] || [ "$target_port" -gt 65535 ]; then
-    error "Invalid port number"
-    exit 1
-  fi
-
-  # Check faketime silently
+  # Check faketime silently or handle installation
   if ! check_faketime; then
     exit 1
   fi
 
-  # Get server date - try primary method first
-  local server_date=$(getDate "$target_host:$target_port")
+  # Get server date via NTP
+  local server_date
+  server_date=$(getDate "$target_host")
 
-  # If primary method failed, try alternatives silently
-  if [ -z "$server_date" ]; then
-    # Try curl silently
-    if command -v curl &>/dev/null; then
-      server_date=$(curl -sI "http://$target_host:$target_port/" 2>/dev/null | grep -i "^Date:" | head -1 | sed 's/^Date: *//')
-      [ -n "$server_date" ] && server_date=$(date -d "$server_date" "+%Y-%m-%d %H:%M:%S" 2>/dev/null)
-    fi
-
-    # If still empty, try netcat
-    if [ -z "$server_date" ] && command -v nc &>/dev/null; then
-      local response=$(echo -e "HEAD / HTTP/1.0\r\n\r\n" | timeout 3 nc -w 2 "$target_host" "$target_port" 2>/dev/null)
-      server_date=$(echo "$response" | grep -i "^Date:" | head -1 | sed 's/^Date: *//')
-      [ -n "$server_date" ] && server_date=$(date -d "$server_date" "+%Y-%m-%d %H:%M:%S" 2>/dev/null)
-    fi
-  fi
-
-  # Output result or error
   if [ -n "$server_date" ]; then
     echo "$server_date"
     exit 0
   else
-    error "Failed to get date from $target_host:$target_port"
+    error "Failed to retrieve NTP date from target: $target_host"
     exit 1
   fi
 }

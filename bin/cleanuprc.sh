@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Automatic script to clean .config
-# Save as: ~/.local/bin/clean_config_auto.sh
-
 CONFIG_DIR="$HOME/.config"
 
 # List of items to keep
 KEEP_ITEMS=(
   "micro" "powershell" "rofi" "Vector 35"
-  "dconf" "Mousepad" "pulse" "Thunar" "Windsurf"
+  "dconf" "Mousepad" "pulse" "Thunar" "Windsurf" "Code"
   "gtk-3.0" "nautilus" "qt6ct" "user-dirs.dirs" "user-dirs.locale" "autostart"
-  "xfce4" "kitty" "qterminal.org" "wireshark" "Caido" "obsidian" "Windsurf" "polybar"
+  "xfce4" "kitty" "qterminal.org" "Caido" "obsidian" "polybar"
 )
 
 clean_config_auto() {

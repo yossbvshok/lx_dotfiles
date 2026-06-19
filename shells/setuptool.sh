@@ -9,7 +9,7 @@ APT_TOOLS=(
   "mono-devel" "wine" "wine64" "feroxbuster" "powershell" "gdb-peda" "wget" "gpg" "curl" "bat" "fd-find" "fzf" "ripgrep"
   "jq" "yq" "ncdu" "html2text" "binwalk" "exiftool" "foremost" "sleuthkit" "wireshark" "tshark"
   "tcpdump" "nmap" "nikto" "gobuster" "ffuf" "seclists" "wordlists" "radare2" "strace" "ltrace" "htop"
-  "tree" "libboost-all-dev" "polybar" "shfmt" "nodejs" "sox" "docker.io"
+  "tree" "libboost-all-dev" "polybar" "shfmt" "nodejs" "sox" "docker.io" "ntpsec-ntpdate" "faketime"
 )
 
 # Python pip packages
